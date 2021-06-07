@@ -8,6 +8,15 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+  int _selectedIndex = 0;
+  int _index = 0;
+
+  void _onItemTaped(_index) {
+    setState(() {
+      _selectedIndex = _index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,22 +28,37 @@ class _ChatScreenState extends State<ChatScreen> {
           IconButton(icon: Icon(Icons.add_comment_rounded), onPressed: () {})
         ],
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-            child: TextFormField(
-              decoration: InputDecoration(
-                prefixIcon:
-                    IconButton(icon: Icon(Icons.search), onPressed: () {}),
-                labelText: 'Search...',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+      body: _selectedIndex == 0
+          ? Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      prefixIcon: IconButton(
+                          icon: Icon(Icons.search), onPressed: () {}),
+                      labelText: 'Search...',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          ),
-          Expanded(child: ChatsList()),
+                Expanded(child: ChatsList()),
+              ],
+            )
+          : _selectedIndex == 1
+              ? Container()
+              : Container(),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: _onItemTaped,
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.chat), label: 'Chat'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.notifications_none_outlined),
+              label: 'Notification'),
+          BottomNavigationBarItem(icon: Icon(Icons.more_horiz), label: 'More'),
         ],
       ),
     );
