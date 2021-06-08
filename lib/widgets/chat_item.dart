@@ -8,67 +8,79 @@ class ChatItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final chatData = Provider.of<Chat>(context, listen: false);
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20),
+      margin: EdgeInsets.symmetric(horizontal: 10),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                child: Row(
-                  children: [
-                    CircleAvatar(
-                      backgroundImage: AssetImage(chatData.imageUrl),
-                    ),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 25),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            chatData.name,
-                            textScaleFactor: 1.2,
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          Row(
-                            children: [
-                              chatData.lastMessage == true
-                                  ? Text('You: ')
-                                  : Text(chatData.name.substring(
-                                          0, chatData.name.indexOf(' ')) +
-                                      ' :'),
-                              Text(
-                                chatData.message,
+              Expanded(
+                flex: 1,
+                child: Container(
+                  child: CircleAvatar(
+                    radius: 30,
+                    backgroundImage: AssetImage(chatData.imageUrl),
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 3,
+                child: Container(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 5),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              chatData.name,
+                              textScaleFactor: 1.2,
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              chatData.data,
+                              textScaleFactor: 0.8,
+                              style: TextStyle(fontWeight: FontWeight.w200),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 5),
+                                              child: Row(
+                          children: [
+                            chatData.lastMessage == true
+                                ? Text('You: ')
+                                : Text(chatData.name.substring(
+                                        0, chatData.name.indexOf(' ')) +
+                                    ' :'),
+                            Expanded(
+                              child: Text(
+                                chatData.message + 'test message',
                                 maxLines: 1,
                                 softWrap: false,
                                 overflow: TextOverflow.ellipsis,
                               ),
-                            ],
-                          ),
-                          if (chatData.typeMessage == '') Text(''),
-                          if (chatData.typeMessage == 'Help Reg')
-                            TypeMessage(
-                              messageData: chatData.typeMessage,
-                              color: Colors.yellow,
                             ),
-                          if (chatData.typeMessage == 'Engagegment Partner')
-                            TypeMessage(
-                              messageData: chatData.typeMessage,
-                              color: Colors.black,
-                              fontsColor: Colors.white,
-                            ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                      if (chatData.typeMessage == '') Text(''),
+                      if (chatData.typeMessage == 'Help Reg')
+                        TypeMessage(
+                          messageData: chatData.typeMessage,
+                          color: Colors.yellow,
+                        ),
+                      if (chatData.typeMessage == 'Engagegment Partner')
+                        TypeMessage(
+                          messageData: chatData.typeMessage,
+                          color: Colors.black,
+                          fontsColor: Colors.white,
+                        ),
+                    ],
+                  ),
                 ),
-              ),
-              Text(
-                chatData.data,
-                textScaleFactor: 0.8,
-                style: TextStyle(fontWeight: FontWeight.w200),
               ),
             ],
           ),
@@ -87,6 +99,7 @@ class TypeMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.symmetric(vertical: 5),
       padding: EdgeInsets.all(5),
       decoration:
           BoxDecoration(color: color, borderRadius: BorderRadius.circular(15)),
