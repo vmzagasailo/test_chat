@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../widgets/chats_list.dart';
 
 class ChatScreen extends StatefulWidget {
+  static const routeName = '/chat-screen';
+  GoogleSignInAccount user;
+  ChatScreen({@required this.user});
   @override
   _ChatScreenState createState() => _ChatScreenState();
 }
@@ -16,12 +20,15 @@ class _ChatScreenState extends State<ChatScreen> {
       _selectedIndex = _index;
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Padding(padding: EdgeInsets.all(5), child: CircleAvatar()),
+        leading: Padding(
+            padding: EdgeInsets.all(5),
+            child: CircleAvatar(
+              backgroundImage: NetworkImage(widget.user.photoUrl),
+            )),
         centerTitle: true,
         title: Text('Chat'),
         actions: [
