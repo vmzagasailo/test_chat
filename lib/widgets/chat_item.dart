@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/chat.dart';
+import './group_chat_widget.dart';
 
 class ChatItem extends StatelessWidget {
   @override
@@ -13,15 +14,20 @@ class ChatItem extends StatelessWidget {
         children: [
           Row(
             children: [
-              Expanded(
-                flex: 1,
-                child: Container(
-                  child: CircleAvatar(
-                    radius: 30,
-                    backgroundImage: AssetImage(chatData.imageUrl),
-                  ),
-                ),
-              ),
+              chatData.isGroup == true
+                  ? GroupChatWidget(
+                      imagerl1: chatData.imageUrl,
+                      imagerl2: 'assets/images/8.jpg',
+                    )
+                  : Expanded(
+                      flex: 1,
+                      child: Container(
+                        child: CircleAvatar(
+                          radius: 30,
+                          backgroundImage: AssetImage(chatData.imageUrl),
+                        ),
+                      ),
+                    ),
               Expanded(
                 flex: 3,
                 child: Container(
@@ -39,7 +45,7 @@ class ChatItem extends StatelessWidget {
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              chatData.data,
+                              chatData.date,
                               textScaleFactor: 0.8,
                               style: TextStyle(fontWeight: FontWeight.w200),
                             ),
@@ -48,7 +54,7 @@ class ChatItem extends StatelessWidget {
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: 5),
-                                              child: Row(
+                        child: Row(
                           children: [
                             chatData.lastMessage == true
                                 ? Text('You: ')
@@ -76,6 +82,12 @@ class ChatItem extends StatelessWidget {
                         TypeMessage(
                           messageData: chatData.typeMessage,
                           color: Colors.black,
+                          fontsColor: Colors.white,
+                        ),
+                      if (chatData.typeMessage == 'Chalenge')
+                        TypeMessage(
+                          messageData: chatData.typeMessage,
+                          color: Colors.red,
                           fontsColor: Colors.white,
                         ),
                     ],
