@@ -6,7 +6,7 @@ class Chats with ChangeNotifier {
     Chat(
         id: 'm1',
         name: 'Michael Grant',
-        data: 'Yesterday',
+        date: 'Yesterday',
         message: 'Thanks',
         imageUrl: 'assets/images/1.jpg',
         typeMessage: '',
@@ -14,15 +14,31 @@ class Chats with ChangeNotifier {
     Chat(
         id: 'm2',
         name: 'Alexander Murphy',
-        data: 'Mon',
+        date: 'Mon',
         message: 'Based on what you have told',
         imageUrl: 'assets/images/2.jpg',
         typeMessage: 'Help Reg',
         lastMessage: false),
     Chat(
+        id: 'm7',
+        name: 'Darren Swinney',
+        date: '13:24',
+        message: 'Perhaps if there was some',
+        imageUrl: 'assets/images/7.jpg',
+        typeMessage: 'Chalenge',
+        lastMessage: false,
+        isGroup: true),
+    // Chat(
+    //   id: 'm8',
+    //   name: 'Lana Del Rey',
+    //   imageUrl: 'assets/images/8.jpg',
+    //   typeMessage: 'Chalenge',
+    //   isGroup: true
+    // ),
+    Chat(
         id: 'm3',
         name: 'Stephanie Jones',
-        data: '14:48',
+        date: '14:48',
         message: 'What time do you think you will be ',
         imageUrl: 'assets/images/3.jpg',
         typeMessage: '',
@@ -30,7 +46,7 @@ class Chats with ChangeNotifier {
     Chat(
         id: 'm4',
         name: 'Julie McAndrew',
-        data: '14:48',
+        date: '14:48',
         message: 'Thanks Julie',
         imageUrl: 'assets/images/4.jpg',
         typeMessage: 'Engagegment Partner',
@@ -38,7 +54,7 @@ class Chats with ChangeNotifier {
     Chat(
         id: 'm5',
         name: 'Dilan Edmonds',
-        data: '24 ago',
+        date: '24 ago',
         message: 'asd',
         imageUrl: 'assets/images/5.jpg',
         typeMessage: '',
