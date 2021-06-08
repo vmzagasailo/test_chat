@@ -3,7 +3,10 @@ import 'package:provider/provider.dart';
 
 import './providers/chats.dart';
 
-import './screens/chat_screen.dart';
+
+import './screens/sign_in_screen.dart';
+import 'screens/chat_screen.dart';
+import 'screens/chat_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,7 +23,10 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: ChatScreen(),
+        home: SignInScreen(),
+        routes: {
+          ChatScreen.routeName: (ctx) => ChatScreen(),
+        },
       ),
     );
   }
