@@ -5,7 +5,7 @@ import '../widgets/chats_list.dart';
 
 class ChatScreen extends StatefulWidget {
   static const routeName = '/chat-screen';
-  GoogleSignInAccount user;
+  final GoogleSignInAccount user;
   ChatScreen({@required this.user});
   @override
   _ChatScreenState createState() => _ChatScreenState();
@@ -13,9 +13,8 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   int _selectedIndex = 0;
-  int _index = 0;
 
-  void _onItemTaped(_index) {
+  void _onItemTaped(int _index) {
     setState(() {
       _selectedIndex = _index;
     });
