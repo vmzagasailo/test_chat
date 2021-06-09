@@ -19,6 +19,7 @@ class _ChatScreenState extends State<ChatScreen> {
       _selectedIndex = _index;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,20 +38,9 @@ class _ChatScreenState extends State<ChatScreen> {
       body: _selectedIndex == 0
           ? Column(
               children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      prefixIcon: IconButton(
-                          icon: Icon(Icons.search), onPressed: () {}),
-                      labelText: 'Search...',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                    ),
-                  ),
+                Expanded(
+                  child: ChatsList(),
                 ),
-                Expanded(child: ChatsList()),
               ],
             )
           : _selectedIndex == 1
