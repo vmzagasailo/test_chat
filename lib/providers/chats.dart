@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/foundation.dart';
 import 'chat.dart';
 
@@ -28,13 +30,6 @@ class Chats with ChangeNotifier {
         typeMessage: 'Chalenge',
         lastMessage: false,
         isGroup: true),
-    // Chat(
-    //   id: 'm8',
-    //   name: 'Lana Del Rey',
-    //   imageUrl: 'assets/images/8.jpg',
-    //   typeMessage: 'Chalenge',
-    //   isGroup: true
-    // ),
     Chat(
         id: 'm3',
         name: 'Stephanie Jones',
@@ -61,7 +56,23 @@ class Chats with ChangeNotifier {
         lastMessage: false),
   ];
 
-  List<Chat> get messageItemlist {
-    return [..._messageItemlist];
+  String _searchString = '';
+
+  UnmodifiableListView<Chat> get messageItemlist => _searchString.isEmpty
+      ? UnmodifiableListView(_messageItemlist)
+      : UnmodifiableListView(_messageItemlist.where(
+          (chat) => chat.name.toLowerCase().trimRight().contains(_searchString.toLowerCase()),
+        ));
+
+  void changeSearchString(String searchString) {
+    _searchString = searchString;
+    notifyListeners();
   }
+
+  // List<Chat> get messageItemlist {
+  //   return [..._messageItemlist];
+  //}
+
+  // UnmodifiableListView<Chat> get messageItemlist =>
+  //     UnmodifiableListView(_messageItemlist);
 }
