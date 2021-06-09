@@ -57,7 +57,7 @@ class ChatItem extends StatelessWidget {
                         child: Row(
                           children: [
                             chatData.lastMessage == true
-                                ? Text('You: ')
+                                ? const Text('You: ')
                                 : Text(chatData.name.substring(
                                         0, chatData.name.indexOf(' ')) +
                                     ' :'),

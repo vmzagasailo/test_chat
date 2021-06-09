@@ -3,10 +3,7 @@ import 'package:provider/provider.dart';
 
 import './providers/chats.dart';
 
-
 import './screens/sign_in_screen.dart';
-import 'screens/chat_screen.dart';
-import 'screens/chat_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,13 +17,14 @@ class MyApp extends StatelessWidget {
       create: (ctx) => Chats(),
       child: MaterialApp(
         title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          appBarTheme: AppBarTheme(
+            color:  Color.fromRGBO(12, 39, 57, 1)
+          ),
+          primarySwatch: Colors.purple,
         ),
         home: SignInScreen(),
-        routes: {
-          ChatScreen.routeName: (ctx) => ChatScreen(),
-        },
       ),
     );
   }
